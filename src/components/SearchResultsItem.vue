@@ -8,11 +8,7 @@ import {  ArrowRight,X } from "lucide-vue-next"
         releaseDate:String,
         genres:Array
     })
-// :key="item.show.id"
-//       :title="item.show.name"
-//       :desc="item.show.summary"
-//       :language="item.show.language"
-//       :releaseDate="item.show.premiered"
+
 
 const isOpen = ref(false)
 const open=ref("Read More...")
