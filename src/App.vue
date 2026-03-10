@@ -6,6 +6,7 @@ import {ref} from "vue"
 // const show=ref(false)
 const results=ref([]);
 const loading = ref(false)
+const emptyResponse=ref(false)
 
 async function search(query){
   if(!query){
@@ -16,9 +17,14 @@ async function search(query){
   try {
      const res = await fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
     const data = await res.json()
-// console.log(data)
+
     results.value = data
-    console.log(results.value)
+    if(data.length==0){
+      emptyResponse.value=true;
+    }else{
+      emptyResponse.value=false
+    }
+    // console.log(results.value)
   } catch (error) {
     console.log("error from vue.app:",error)
   }
@@ -37,7 +43,7 @@ async function search(query){
       <SearchBar @search="search" />
       <Loader v-if="loading"/>
     <!-- <Loader/> -->
-      <SearchResultList :results="results"/>
+      <SearchResultList :results="results" :emptyResponse="emptyResponse"/>
     </div>
     
   </div>

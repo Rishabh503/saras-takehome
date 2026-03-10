@@ -24,6 +24,20 @@ function onSearch(){
     </button>
         </div>
     </main>
+    <div v-if="query.length==0" class="w-full flex items-center justify-center gap-4 ">
+      <span class="rounded-xl py-1  w-auto mt-4 shadow-sm px-4 border-green-200 bg-white ">
+        Cricket
+      </span>
+      <span class="rounded-xl py-1  w-auto mt-4 shadow-sm px-4 border-green-200 bg-white ">
+        Batman
+      </span>
+      <span class="rounded-xl py-1  w-auto mt-4 shadow-sm px-4 border-green-200 bg-white ">
+        Dance
+      </span>
+      <span class="rounded-xl py-1  w-auto mt-4 shadow-sm px-4 border-green-200 bg-white ">
+        Music
+      </span>
+    </div>
    
 </template>
 

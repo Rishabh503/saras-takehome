@@ -6,11 +6,12 @@ const props = defineProps({
   results: {
     type: Array,
     default: () => []
-  }
+  },
+  emptyResponse:Boolean
 })
 console.log(props.results)
 if(props.results){
-    console.log(props.results)
+    console.log("from props",props.results.length)
 }
 
 const items = ref([
@@ -40,10 +41,10 @@ const items = ref([
 </script>
 
 <template>
-  <div class="mt-2">
+  <div v-if="!emptyResponse" class="mt-2">
 
     <ListItem
-      v-for="item in results"
+      v-for="item in props.results"
       :key="item.show.id"
       :title="item.show.name"
       :desc="item.show.summary"
@@ -53,4 +54,18 @@ const items = ref([
     />
 
   </div>
+
+  <div v-else  class="border border-green-50 shadow-sm mb-4 mt-2 p-3 bg-white rounded-lg">
+  <p class="text-sm text-gray-700">
+    No results found for your search.  
+    Try searching for something like <span class="font-medium">cricket</span>, 
+    <span class="font-medium">batman</span>, 
+    <span class="font-medium">dogs</span>, or 
+    <span class="font-medium">dance</span>.
+  </p>
+
+  <p class="text-xs text-gray-500 mt-1">
+    It’s also possible the search term is invalid or not available in our dataset.
+  </p>
+</div>
 </template>
