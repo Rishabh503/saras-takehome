@@ -3,8 +3,10 @@ import {ref} from "vue"
 
 import { Search, ArrowRight } from "lucide-vue-next"
 const query=ref("")
+const emit=defineEmits(["search"])
 function onSearch(){
     console.log("query is :" , query.value)
+    emit("search",query.value)
 }
 </script>
 

@@ -4,10 +4,15 @@ import {  ArrowRight,X } from "lucide-vue-next"
     const props=defineProps({
         title:String,
         desc:String,
-        source:String,
-        extra:String
+        language:String,
+        releaseDate:String,
+        genres:Array
     })
-
+// :key="item.show.id"
+//       :title="item.show.name"
+//       :desc="item.show.summary"
+//       :language="item.show.language"
+//       :releaseDate="item.show.premiered"
 
 const isOpen = ref(false)
 const open=ref("Read More...")
@@ -23,17 +28,39 @@ function toggle() {
 <template>
   <div class="border border-green-50 rounded-lg bg-white p-4 shadow-sm hover:shadow-md transition mb-4">
     
-    <h2 class="text-lg font-semibold mb-2">
+   <div class="flex justify-between">
+     <div>
+        <h2 class="text-lg font-semibold mb-2">
       {{ title }}
     </h2>
 
     <p class="text-gray-600 mb-3">
-      {{ desc }}
+      Date of Release : {{ releaseDate }}
     </p>
+  
+     </div>
+    <div v-if="genres && genres.length" >
+  <span
+    v-for="genre in genres"
+    :key="genre"
+    class="text-xs bg-green-100 mx-2 text-green-700 px-2  py-1 rounded"
+  >
+    {{ genre }}
+  </span>
+</div>
+    <div v-if="genres && genres.length==0" >
+  <span
+    class="text-xs bg-green-100 mx-2 text-red-700 px-2  py-1 rounded"
+  >
+    Genre Not Available 
+  </span>
+</div>
+   </div>
+   
 
     <div class="cursor-pointer flex items-center justify-between font-bold" @click="toggle">
     <span class="text-sm text-green-600 font-medium">
-      Source: {{ source }}
+      Language: {{ language }}
     </span>
        <span v-if="open === ''">
   <X class="w-4 h-4"/>
@@ -44,7 +71,8 @@ function toggle() {
     </div>
 
     <div v-if="isOpen" class="mt-3  text-gray-600">
-    {{extra}}
+    <!-- {{desc}} -->
+       <p v-html="desc"></p>
     </div>
 
   </div>

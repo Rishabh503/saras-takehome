@@ -2,6 +2,17 @@
 import { ref } from "vue"
 import ListItem from "./SearchResultsItem.vue"
 
+const props = defineProps({
+  results: {
+    type: Array,
+    default: () => []
+  }
+})
+console.log(props.results)
+if(props.results){
+    console.log(props.results)
+}
+
 const items = ref([
   {
     id: 1,
@@ -32,12 +43,13 @@ const items = ref([
   <div class="mt-2">
 
     <ListItem
-      v-for="item in items"
-      :key="item.id"
-      :title="item.title"
-      :desc="item.desc"
-      :source="item.source"
-      :extra="item.extra"
+      v-for="item in results"
+      :key="item.show.id"
+      :title="item.show.name"
+      :desc="item.show.summary"
+      :language="item.show.language"
+      :releaseDate="item.show.premiered"
+      :genres="item.show.genres"
     />
 
   </div>

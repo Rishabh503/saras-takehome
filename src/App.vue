@@ -1,8 +1,30 @@
 <script setup>
 import SearchBar from './components/SearchBar.vue'
 import SearchResultList from './components/SearchResultList.vue'
+import Loader from './components/Loader.vue'
 import {ref} from "vue"
 // const show=ref(false)
+const results=ref([]);
+const loading = ref(false)
+
+async function search(query){
+  if(!query){
+    results.value=[];
+    return
+  }
+  loading.value=true;
+  try {
+     const res = await fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
+    const data = await res.json()
+// console.log(data)
+    results.value = data
+    console.log(results.value)
+  } catch (error) {
+    console.log("error from vue.app:",error)
+  }
+
+  loading.value=false;
+}
 </script>
 
 <template>
@@ -12,8 +34,10 @@ import {ref} from "vue"
       <p class="text-center text-gray-500">
         Type your query and get the best results out there in just one click !!
       </p>
-      <SearchBar />
-      <SearchResultList/>
+      <SearchBar @search="search" />
+      <Loader v-if="loading"/>
+    
+      <SearchResultList :results="results"/>
     </div>
     
   </div>
