@@ -11,18 +11,18 @@ import {  ArrowRight,X } from "lucide-vue-next"
 
 
 const isOpen = ref(false)
-const open=ref("Read More...")
+const open=ref("Read More..")
 
 function toggle() {
   isOpen.value = !isOpen.value
     if(isOpen.value){
         open.value=''
-    }else open.value="Read More..."
+    }else open.value="Read More.."
 }
 </script>
 
 <template>
-  <div class="border border-green-50 rounded-lg bg-white p-4 shadow-sm hover:shadow-md transition mb-4">
+  <div @click="toggle"  class="border border-green-50 rounded-lg bg-white p-4 shadow-sm hover:shadow-md cursor-pointer transition mb-4">
     
    <div class="flex flex-col  sm:justify-between  sm:flex-row sm:items-start gap-2 ">
      <div>
@@ -46,9 +46,11 @@ function toggle() {
     {{ genre }}
   </span>
 </div>
-    <div v-if="genres && genres.length==0" >
+    <div v-if="genres && genres.length==0" 
+     class="flex  flex-wrap mt-1 sm:mt-0"
+    >
   <span
-    class="text-xs bg-green-100 mx-2 text-red-700 px-2  py-1 rounded"
+    class="text-xs bg-green-100 mr-2 mb-1 text-red-700 px-2  py-1 rounded"
   >
     Genre Not Available 
   </span>
@@ -56,22 +58,39 @@ function toggle() {
    </div>
    
 
-    <div class="cursor-pointer flex items-center justify-between font-bold" @click="toggle">
+    <div class="cursor-pointer sm:p-0 px-0.5 flex items-center justify-between font-bold"  >
     <span class="text-sm text-green-600 font-medium">
       Language: {{ language }}
     </span>
-       <span v-if="open === ''">
-  <X class="w-4 h-4"/>
-</span>
-<span v-else>
-  {{ open }}
-</span>
+      
     </div>
 
-    <div v-if="isOpen" class="mt-3 sm:text-base text-sm   text-gray-600">
-    <!-- {{desc}} -->
-       <p v-html="desc"></p>
-    </div>
+    <transition name="fade">
+        <div v-if="isOpen" class="mt-3 sm:text-base text-sm   text-gray-600">
+        <!-- {{desc}} -->
+          <p v-html="desc"></p>
+        </div>
 
+    </transition>
   </div>
 </template>
+
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition:all 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform:translateY(-6px);
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+  transform:translateY(0);
+}
+</style>

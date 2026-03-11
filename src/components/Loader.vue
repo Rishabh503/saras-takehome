@@ -1,7 +1,7 @@
 <script setup></script>
 <template>
     <div>
-        <div v-for="i in 3" :key="i"
+        <div v-for="i in 5" :key="i"
         class="border border-green-50  animate-pulse shadow-sm mb-4 mt-2 p-2 bg-white rounded-lg"
         >
             <div class="flex  justify-between mb-4">

@@ -12,17 +12,21 @@ const loading = ref(false)
 const emptyResponse=ref(false)
 
 async function search(query){
+  // validating if the user query is there or not  
   if(!query){
     results.value=[];
     return
   }
-  loading.value=true;
+// setting up the values for a new search
+     loading.value=true;
      emptyResponse.value=false
      results.value=[]
+
+
   try {
      const res = await fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
     const data = await res.json()
-
+    // adding the data to the results
     results.value = data
     if(data.length==0){
       emptyResponse.value=true;
@@ -41,9 +45,9 @@ async function search(query){
 <template>
   <div class="min-h-screen bg-[#fdf9f9] flex justify-center sm:px-6   p-6">
     <div class="w-full px-1 sm:px-0   max-w-3xl mx-auto">
-      <h1 class="text-2xl sm:text-3xl md:text-4xl
+      <h1 class="text-xl sm:text-3xl md:text-4xl
         font-bold text-[#11d493] m-6 text-center">
-        What Are You Looking for?</h1>
+        Which Movie Are You Looking for?</h1>
       <p class="text-center px-2 text-gray-500 text-sm sm:text-base ">
         Type your query and get the best results out there in just one click !!
       </p>
