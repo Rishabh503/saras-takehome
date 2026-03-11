@@ -12,13 +12,13 @@ function onSearch(){
 
 <template>
     <main>
-        <div class="w-full flex items-center rounded-xl mt-4 shadow-sm pl-4 border-green-200 bg-white ">
-            <Search class="mr-2 text-gray-300 w-5 h-5"/>
+        <div class="w-full flex items-center rounded-xl mt-4 shadow-sm pl-4   sm:px-4 py-2 border-green-200 bg-white ">
+            <Search class="mr-2 text-gray-300 w-6 h-6"/>
             <input type="text" v-model="query" placeholder="Start typing your query here "
-            class="flex-1 text-gray-600 placeholder-gray-400 outline-none"
+            class="flex-1 text-sm  sm:text-base text-gray-600 placeholder-gray-400 outline-none"
             />
         <button @click="onSearch"
-      class="ml-3 bg-green-400 hover:bg-green-500 text-white p-2 rounded-lg flex items-center justify-center"
+      class="ml-3 mr-2 sm:mr-0 bg-green-400 hover:bg-green-500 text-white p-2 rounded-lg flex items-center justify-center"
     >
         <ArrowRight class="h-4"/>
     </button>

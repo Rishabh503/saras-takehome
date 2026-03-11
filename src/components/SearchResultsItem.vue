@@ -24,9 +24,9 @@ function toggle() {
 <template>
   <div class="border border-green-50 rounded-lg bg-white p-4 shadow-sm hover:shadow-md transition mb-4">
     
-   <div class="flex justify-between">
+   <div class="flex flex-col  sm:justify-between  sm:flex-row sm:items-start gap-2 ">
      <div>
-        <h2 class="text-lg font-semibold mb-2">
+        <h2 class="text-base font-semibold mb-2 sm:text-lg ">
       {{ title }}
     </h2>
 
@@ -35,11 +35,13 @@ function toggle() {
     </p>
   
      </div>
-    <div v-if="genres && genres.length" >
+    <div v-if="genres && genres.length" 
+    class="flex  flex-wrap mt-1 sm:mt-0"
+    >
   <span
     v-for="genre in genres"
     :key="genre"
-    class="text-xs bg-green-100 mx-2 text-green-700 px-2  py-1 rounded"
+    class="text-xs bg-green-100 mr-2 mb-1 text-green-700 px-2  py-1 rounded"
   >
     {{ genre }}
   </span>
@@ -66,7 +68,7 @@ function toggle() {
 </span>
     </div>
 
-    <div v-if="isOpen" class="mt-3  text-gray-600">
+    <div v-if="isOpen" class="mt-3 sm:text-base text-sm   text-gray-600">
     <!-- {{desc}} -->
        <p v-html="desc"></p>
     </div>

@@ -41,7 +41,7 @@ const items = ref([
 </script>
 
 <template>
-  <div v-if="!emptyResponse" class="mt-2">
+  <div v-if="!emptyResponse" class="mt-2 px-1  sm:px-0 ">
 
     <ListItem
       v-for="item in props.results"
@@ -55,16 +55,14 @@ const items = ref([
 
   </div>
 
-  <div v-else  class="border border-green-50 shadow-sm mb-4 mt-2 p-3 bg-white rounded-lg">
-  <p class="text-sm text-gray-700">
+  <div v-else  class="mx-1 sm:mx-0 border border-green-50 shadow-sm mb-4 mt-2 p-3 bg-white rounded-lg">
+  <p class="text-sm tsm:text-md text-gray-700">
     No results found for your search.  
-    Try searching for something like <span class="font-medium">cricket</span>, 
-    <span class="font-medium">batman</span>, 
-    <span class="font-medium">dogs</span>, or 
-    <span class="font-medium">dance</span>.
+    Try searching for something like 
+    <span class="font-medium">cricket batman dogs or dance</span>, 
   </p>
 
-  <p class="text-xs text-gray-500 mt-1">
+  <p class="sm:text-md text-sm text-gray-500 mt-1 mr-2">
     It’s also possible the search term is invalid or not available in our dataset.
   </p>
 </div>
